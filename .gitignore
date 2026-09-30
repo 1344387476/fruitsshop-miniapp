@@ -1,0 +1,11 @@
+node_modules/
+.netlify/
+.npm-cache/
+.pnpm-store/
+.test-output/
+artifacts/
+project.private.config.json
+miniprogram/miniprogram_npm/
+dist/
+coverage/
+

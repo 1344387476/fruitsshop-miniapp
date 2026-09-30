@@ -1,0 +1,56 @@
+.payment {
+  text-align: center;
+  padding-top: 90rpx;
+}
+.result-icon {
+  width: 150rpx;
+  height: 150rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f1eade;
+  color: #a38d67;
+  margin: 0 auto 38rpx;
+}
+.result-icon.done {
+  background: #e9eddf;
+  color: #7a8a5d;
+}
+.result-caption {
+  margin: 20rpx 0;
+}
+.payment-price {
+  font-size: 68rpx;
+  font-weight: 600;
+  margin: 42rpx 0 28rpx;
+}
+.payment-price text {
+  font-size: 36rpx;
+  margin-right: 7rpx;
+}
+.demo-banner {
+  display: flex;
+  justify-content: center;
+  gap: 9rpx;
+  align-items: center;
+  color: #9d937c;
+  font-size: 23rpx;
+  margin-bottom: 50rpx;
+}
+.payment .primary,
+.payment .secondary {
+  width: 100%;
+}
+.simulation-actions {
+  padding: 18rpx 14rpx;
+}
+.simulation-actions .text-btn {
+  width: 0;
+  min-width: 0;
+  flex: 1 1 0;
+  white-space: nowrap;
+}
+.home-link {
+  margin: 35rpx auto;
+}

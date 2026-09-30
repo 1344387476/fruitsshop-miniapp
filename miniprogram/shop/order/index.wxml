@@ -1,0 +1,77 @@
+<nav title="订单详情" />
+<view wx:if="{{error}}" class="empty">
+  订单加载失败
+  <button class="secondary" bindtap="load">重试</button>
+</view>
+<view wx:elif="{{order}}" class="page with-bottom">
+  <view class="order-status">
+    <view class="status-symbol">
+      <t-icon
+        name="{{order.status==='completed'?'check-circle':order.status==='cancelled'?'close-circle':order.status==='pending'?'wallet':'undertake-delivery'}}"
+        size="35"
+      />
+    </view>
+    <view>
+      <view class="title">{{order.statusText}}</view>
+      <view class="muted">
+        {{order.status==='pending'?'还有一步，新鲜即将启程':order.status==='paid'?(order.fulfillment==='delivery'?'门店正在准备，将为您安排配送':'门店正在准备，自提请联系店家确认'):order.status==='completed'?'愿这一份新鲜，让今天更甜':'本次订单已取消'}}
+      </view>
+    </view>
+  </view>
+  <view class="card">
+    <view class="row">
+      <view class="section-title no-margin">{{order.fulfillment==='delivery'?'配送到家':'到店自提'}}</view>
+      <text class="tag">{{order.fulfillment==='delivery'?'门店配送':'自提免费'}}</text>
+    </view>
+    <view wx:if="{{order.contact.detail}}" class="contact-address">{{order.contact.detail}}</view>
+    <view class="muted contact-name">{{order.contact.name}}　{{order.contact.phone}}</view>
+    <view wx:if="{{order.fulfillment==='pickup'}}" class="notice">
+      <view>{{shop.name}} · {{shop.address}}</view>
+      <view>营业时间 {{shop.hours}}，请联系店家确认后到店取货。</view>
+    </view>
+  </view>
+  <view class="card">
+    <view class="line" wx:for="{{order.lines}}" wx:key="skuId">
+      <view class="thumb"><fruit-image index="{{item.image}}" label="{{item.name}}" /></view>
+      <view class="column">
+        <view class="line-name">{{item.name}}</view>
+        <view class="muted small">{{item.spec}}</view>
+        <view class="row">
+          <text>¥{{item.priceText}}</text>
+          <text class="muted">×{{item.quantity}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="divider" />
+    <view class="row amount">
+      <text class="muted">商品金额</text>
+      <text>¥{{order.subtotalText}}</text>
+    </view>
+    <view class="row amount">
+      <text class="muted">配送费</text>
+      <text>¥{{order.feeText}}</text>
+    </view>
+    <view class="row amount">
+      <text>{{order.status==='pending'?'应付金额':'订单金额'}}</text>
+      <text class="price">¥{{order.totalText}}</text>
+    </view>
+  </view>
+  <view class="card">
+    <view class="muted small">订单编号</view>
+    <view class="order-id" user-select>{{order.id}}</view>
+    <view class="muted small section">下单时间</view>
+    <view>{{order.dateText}}</view>
+    <block wx:if="{{order.note}}">
+      <view class="muted small section">订单备注</view>
+      <view class="note">{{order.note}}</view>
+    </block>
+  </view>
+  <view class="notice">演示订单，不会产生真实扣款或配送。已付款订单如需调整，请联系店家。</view>
+</view>
+<view wx:if="{{order}}" class="bottom-bar row">
+  <button class="secondary column" bindtap="contact">联系店家</button>
+  <block wx:if="{{order.status==='pending'}}">
+    <button class="secondary column" bindtap="cancel" disabled="{{busy}}">取消订单</button>
+    <button class="primary column" bindtap="pay">继续支付</button>
+  </block>
+</view>

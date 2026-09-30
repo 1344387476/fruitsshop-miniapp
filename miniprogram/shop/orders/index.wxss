@@ -1,0 +1,39 @@
+.order-tabs {
+  white-space: nowrap;
+  border-bottom: 1rpx solid #eae7de;
+}
+.filter-row {
+  display: flex;
+  padding: 10rpx 24rpx 0;
+  gap: 28rpx;
+}
+.filter-row > view {
+  flex-shrink: 0;
+  font-size: 24rpx;
+  color: #929184;
+  padding: 16rpx 4rpx 22rpx;
+  border-bottom: 4rpx solid transparent;
+}
+.filter-row .active {
+  color: #ce663f;
+  border-bottom-color: #ce663f;
+}
+.order-total {
+  font-size: 30rpx;
+  color: #393d32;
+}
+.card .small-btn {
+  flex: 0 0 160rpx;
+  width: 160rpx;
+  min-width: 160rpx;
+  white-space: nowrap;
+  font-size: 24rpx;
+  font-weight: 500;
+  line-height: 64rpx;
+  padding: 0 24rpx;
+}
+.line .small {
+  font-size: 20rpx;
+  word-break: break-all;
+  margin-top: 7rpx;
+}

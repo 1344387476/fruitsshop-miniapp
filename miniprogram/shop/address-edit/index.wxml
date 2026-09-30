@@ -1,0 +1,53 @@
+<nav title="{{id?'编辑地址':'新增地址'}}" />
+<view class="page with-bottom">
+  <view wx:if="{{error}}" class="empty">该地址已不存在，请返回地址列表。</view>
+  <block wx:else>
+    <view class="card">
+      <view class="field">
+        <label>收货人</label>
+        <input
+          value="{{name}}"
+          data-field="name"
+          bindinput="input"
+          maxlength="20"
+          placeholder="请输入收货人姓名"
+          adjust-position
+        />
+      </view>
+      <view class="field">
+        <label>手机号码</label>
+        <input
+          value="{{phone}}"
+          data-field="phone"
+          bindinput="input"
+          type="number"
+          maxlength="11"
+          placeholder="请输入11位手机号"
+          adjust-position
+        />
+      </view>
+      <view class="field">
+        <label>完整收货地址</label>
+        <textarea
+          value="{{detail}}"
+          data-field="detail"
+          bindinput="input"
+          maxlength="120"
+          placeholder="请填写城市、街道、小区和门牌号"
+          adjust-position
+          cursor-spacing="100"
+        />
+      </view>
+      <view class="row default-row">
+        <text>设为默认地址</text>
+        <switch checked="{{isDefault}}" bindchange="toggle" color="#778663" />
+      </view>
+    </view>
+    <view class="notice">请填写完整地址，方便店家联系和配送。本演示仅在当前设备保存地址。</view>
+  </block>
+</view>
+<view class="bottom-bar">
+  <button class="primary" bindtap="save" loading="{{busy}}" disabled="{{busy||loading||error}}">
+    保存地址
+  </button>
+</view>

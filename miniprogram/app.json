@@ -1,0 +1,52 @@
+{
+  "pages": ["pages/index/index", "pages/cart/index", "pages/mine/index"],
+  "subPackages": [
+    {
+      "root": "shop",
+      "pages": [
+        "detail/index",
+        "checkout/index",
+        "payment/index",
+        "orders/index",
+        "order/index",
+        "addresses/index",
+        "address-edit/index",
+        "demo/index"
+      ]
+    }
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#faf8f4"
+  },
+  "renderer": "webview",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {
+    "nav": "/components/nav/index",
+    "fruit-image": "/components/fruit-image/index",
+    "t-icon": "/miniprogram_npm/tdesign-miniprogram/icon/icon"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#8b8880",
+    "selectedColor": "#dd643c",
+    "backgroundColor": "#faf8f4",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/cart/index",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

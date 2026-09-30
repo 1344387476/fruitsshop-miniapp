@@ -1,0 +1,53 @@
+<block wx:if="{{productId && item}}">
+  <view class="fruit-picker-mask" bindtap="close" catchtouchmove="noop" />
+  <view class="fruit-picker-panel" catchtouchmove="noop">
+    <view class="row">
+      <view class="left">
+        <view class="thumb"><fruit-image index="{{item.image}}" label="{{item.name}}" /></view>
+        <view>
+          <view class="sheet-head">{{item.name}}</view>
+          <view class="price">
+            <text class="currency">¥</text>
+            {{item.skus[index].priceText}}
+          </view>
+        </view>
+      </view>
+      <button class="close" bindtap="close" aria-label="关闭">×</button>
+    </view>
+    <view class="muted section">选择规格</view>
+    <view class="specs">
+      <view
+        wx:for="{{item.skus}}"
+        wx:for-item="sku"
+        wx:for-index="skuIndex"
+        wx:key="id"
+        class="spec {{index===skuIndex?'active':''}} {{!sku.stock?'disabled':''}}"
+        data-index="{{skuIndex}}"
+        bindtap="choose"
+      >
+        {{sku.label}} {{!sku.stock?'· 售罄':''}}
+      </view>
+    </view>
+    <view class="row">
+      <view>
+        <view>购买数量</view>
+        <view class="muted small">剩余 {{item.skus[index].stock}} 份</view>
+      </view>
+      <view class="steps">
+        <button data-delta="-1" bindtap="step" disabled="{{quantity<=1}}">−</button>
+        <text>{{quantity}}</text>
+        <button data-delta="1" bindtap="step" disabled="{{quantity>=item.skus[index].stock || quantity>=99}}">
+          ＋
+        </button>
+      </view>
+    </view>
+    <button
+      class="primary sheet-action"
+      bindtap="submit"
+      loading="{{busy}}"
+      disabled="{{busy || !item.skus[index].stock}}"
+    >
+      {{buy?'立即购买':'加入购物车'}}
+    </button>
+  </view>
+</block>

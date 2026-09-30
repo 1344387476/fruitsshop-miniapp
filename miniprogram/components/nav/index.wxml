@@ -1,0 +1,8 @@
+<view class="nav" style="padding-top:{{top}}px">
+  <view class="bar" style="height:{{height}}px;padding-left:{{back?right:32}}px;padding-right:{{right}}px">
+    <button wx:if="{{back}}" class="back" bindtap="back" aria-label="返回">
+      <t-icon name="chevron-left" size="24" />
+    </button>
+    <text class="{{back?'nav-title':'brand'}}">{{title}}</text>
+  </view>
+</view>

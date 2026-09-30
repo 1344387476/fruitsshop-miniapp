@@ -1,0 +1,16 @@
+<view class="frame">
+  <image
+    wx:if="{{!failed}}"
+    class="sheet"
+    src="/assets/fruit-catalog.jpg"
+    style="left:{{-(index%4)*100}}%;top:{{-((index-index%4)/4)*100}}%"
+    mode="scaleToFill"
+    lazy-load
+    binderror="fail"
+    aria-label="{{label}}"
+  />
+  <view wx:else class="fallback">
+    <t-icon name="image" size="36" />
+    <text>{{label}}</text>
+  </view>
+</view>

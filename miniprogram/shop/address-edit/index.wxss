@@ -1,0 +1,6 @@
+.default-row {
+  padding: 24rpx 0 4rpx;
+}
+.field:last-child {
+  border: 0;
+}

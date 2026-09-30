@@ -1,0 +1,29 @@
+{
+  "name": "baiguoji-miniapp",
+  "version": "1.0.0",
+  "description": "百果集原生小程序前端演示",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.cjs",
+    "test:cloud": "node --test tests/cloud-*.test.cjs",
+    "build:npm": "node scripts/build-npm.cjs",
+    "check:pages": "node scripts/check-pages.cjs",
+    "check": "npm run typecheck && npm test && npm run check:pages",
+    "compile": "node scripts/compile.cjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "tdesign-miniprogram": "1.16.1"
+  },
+  "devDependencies": {
+    "htmlparser2": "12.0.0",
+    "miniprogram-api-typings": "5.2.3",
+    "miniprogram-ci": "^2.1.31",
+    "playwright-core": "1.63.0",
+    "prettier": "3.9.9",
+    "sharp": "^0.35.4",
+    "typescript": "^5.9.3"
+  }
+}

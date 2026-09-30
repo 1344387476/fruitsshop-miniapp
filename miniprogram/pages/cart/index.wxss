@@ -1,0 +1,83 @@
+.section-heading {
+  font-size: 37rpx;
+  margin: 14rpx 0;
+}
+.cart-page {
+  padding-bottom: calc(280rpx + env(safe-area-inset-bottom));
+}
+.cart-item {
+  display: flex;
+  gap: 18rpx;
+  align-items: center;
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid #eae6dd;
+}
+.check {
+  width: 36rpx;
+  height: 36rpx;
+  border: 2rpx solid #d4d4c9;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.check.checked {
+  background: #6f7d58;
+  border-color: #6f7d58;
+  color: #fff;
+}
+.cart-item .thumb {
+  width: 128rpx;
+  height: 145rpx;
+}
+.cart-item .text-btn {
+  flex: 0 0 40rpx;
+  width: 40rpx;
+  min-width: 40rpx;
+  max-width: 40rpx;
+}
+.cart-item .line-name {
+  flex: 1;
+  min-width: 0;
+}
+.quantity-row {
+  margin-top: 18rpx;
+}
+.quantity-row .price {
+  font-size: 28rpx;
+}
+.steps button {
+  width: 48rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.steps text {
+  min-width: 44rpx;
+  font-size: 22rpx;
+}
+.cart-bottom {
+  position: fixed;
+  bottom: calc(128rpx + env(safe-area-inset-bottom));
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 22rpx 24rpx;
+  border-top: 1rpx solid #eae6df;
+  z-index: 30;
+}
+.select-all {
+  gap: 10rpx;
+  font-size: 23rpx;
+}
+.total {
+  text-align: right;
+}
+.cart-bottom .primary {
+  flex: 0 0 220rpx;
+  width: 220rpx;
+  min-width: 220rpx;
+  padding: 0 24rpx;
+  height: 78rpx;
+  line-height: 78rpx;
+}

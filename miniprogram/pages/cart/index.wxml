@@ -1,0 +1,86 @@
+<nav title="购物车" back="{{false}}" />
+<view class="page tab-page cart-page">
+  <view class="eyebrow">YOUR FRESH PICKS</view>
+  <view class="title section-heading">选好的新鲜，都在这里</view>
+  <view class="muted">按需挑选，每一份都刚刚好。</view>
+  <view wx:if="{{loading}}" class="empty">正在加载…</view>
+  <view wx:elif="{{error}}" class="empty">
+    加载失败
+    <button class="secondary" bindtap="load">重试</button>
+  </view>
+  <view wx:elif="{{!items.length}}" class="empty">
+    <view class="empty-icon"><t-icon name="cart" size="48" /></view>
+    <view>购物车还是空的</view>
+    <view class="muted">去挑一些今天想吃的水果吧</view>
+    <button class="primary" bindtap="browse">逛逛鲜果</button>
+  </view>
+  <block wx:else>
+    <view class="cart-list section">
+      <view class="cart-item" wx:for="{{items}}" wx:key="skuId">
+        <view
+          class="check {{item.selected?'checked':''}}"
+          data-id="{{item.skuId}}"
+          data-selected="{{item.selected}}"
+          bindtap="select"
+          aria-label="选择商品"
+        >
+          <t-icon wx:if="{{item.selected}}" name="check" size="14" />
+        </view>
+        <view class="thumb" data-id="{{item.productId}}" bindtap="detail">
+          <fruit-image index="{{item.image}}" label="{{item.name}}" />
+        </view>
+        <view class="column">
+          <view class="row">
+            <text class="line-name">{{item.name}}</text>
+            <button size="mini" class="text-btn" data-id="{{item.skuId}}" bindtap="remove" aria-label="移除商品">
+              <t-icon name="close" size="16" />
+            </button>
+          </view>
+          <view class="muted small">{{item.spec}}</view>
+          <view wx:if="{{item.quantity>item.stock}}" class="status small">库存不足，请调整数量</view>
+          <view class="row quantity-row">
+            <text class="price"><text class="currency">¥</text>{{item.priceText}}</text>
+            <view class="steps">
+              <button
+                data-id="{{item.skuId}}"
+                data-quantity="{{item.quantity}}"
+                data-delta="-1"
+                bindtap="step"
+                disabled="{{item.quantity<=1}}"
+              >
+                −
+              </button>
+              <text>{{item.quantity}}</text>
+              <button
+                data-id="{{item.skuId}}"
+                data-quantity="{{item.quantity}}"
+                data-delta="1"
+                bindtap="step"
+                disabled="{{item.quantity>=item.stock||item.quantity>=99}}"
+              >
+                ＋
+              </button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="notice">配送每单 ¥{{feeText}}，到店自提免费。下单前可选择取货方式。</view>
+  </block>
+</view>
+<view class="cart-bottom" wx:if="{{items.length}}">
+  <view class="row">
+    <view class="left select-all" data-id="all" data-selected="{{all}}" bindtap="select">
+      <view class="check {{all?'checked':''}}"><t-icon wx:if="{{all}}" name="check" size="14" /></view>
+      <text>全选</text>
+    </view>
+    <view class="column total">
+      <text class="small">合计</text>
+      <text class="price"><text class="currency">¥</text>{{total}}</text>
+    </view>
+    <button class="primary" disabled="{{!count}}" bindtap="checkout">
+      去结算
+      <text class="small">({{count}})</text>
+    </button>
+  </view>
+</view>

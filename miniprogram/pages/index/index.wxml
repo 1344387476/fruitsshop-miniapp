@@ -1,0 +1,109 @@
+<nav title="{{shop.name}}" back="{{false}}" />
+<view class="page tab-page home">
+  <view class="shop-note">
+    <view class="open-dot" />
+    <text>今日营业 {{shop.hours}}</text>
+    <text class="delivery">配送到家 · 到店自提</text>
+  </view>
+  <view class="hero">
+    <view class="hero-copy">
+      <view class="eyebrow">FRESH EVERY DAY</view>
+      <view class="hero-title">
+        <view>把新鲜，</view>
+        <view>带回日常。</view>
+      </view>
+      <view class="hero-sub">好好吃水果，好好过生活</view>
+      <button class="hero-link" bindtap="browse">
+        挑点新鲜
+        <t-icon name="arrow-right" size="16" />
+      </button>
+    </view>
+    <view class="hero-fruit"><fruit-image index="{{1}}" label="新鲜蜜甜柑橘" /></view>
+    <view class="hero-stamp">
+      <view>每日</view>
+      <view>鲜选</view>
+    </view>
+  </view>
+  <view class="promise">
+    <view>
+      <t-icon name="check-circle" size="14" />
+      门店鲜选
+    </view>
+    <view>
+      <t-icon name="heart" size="14" />
+      新鲜打包
+    </view>
+    <view>
+      <t-icon name="shop" size="14" />
+      附近好水果
+    </view>
+  </view>
+  <view class="section row" id="goods">
+    <view>
+      <view class="eyebrow">A LITTLE FRESHNESS</view>
+      <view class="section-title goods-title">今天，吃点什么？</view>
+    </view>
+    <text class="muted">{{all.length}} 款鲜果</text>
+  </view>
+  <scroll-view scroll-x class="category-scroll" enhanced show-scrollbar="{{false}}">
+    <view class="categories">
+      <view
+        wx:for="{{categories}}"
+        wx:key="*this"
+        class="category {{active===item?'active':''}}"
+        data-category="{{item}}"
+        bindtap="filter"
+      >
+        {{item}}
+      </view>
+    </view>
+  </scroll-view>
+  <view wx:if="{{loading}}" class="empty">正在挑选新鲜…</view>
+  <view wx:elif="{{error}}" class="empty">
+    商品加载失败
+    <button class="secondary" bindtap="load">重新加载</button>
+  </view>
+  <view wx:else class="grid">
+    <view
+      wx:for="{{items}}"
+      wx:key="id"
+      class="product"
+      data-id="{{item.id}}"
+      bindtap="detail"
+      hover-class="product-pressed"
+    >
+      <view class="product-photo">
+        <fruit-image index="{{item.image}}" label="{{item.name}}" />
+        <text wx:if="{{!item.stock}}" class="sold">今日售罄</text>
+        <text wx:elif="{{item.id==='p0'||item.id==='p1'}}" class="product-label">店家精选</text>
+      </view>
+      <view class="product-info">
+        <view class="product-name">{{item.name}}</view>
+        <view class="muted product-spec">{{item.skus[0].label}}</view>
+        <view class="row product-bottom">
+          <view class="price">
+            <text class="currency">¥</text>
+            {{item.priceText}}
+          </view>
+          <button
+            size="mini"
+            class="add {{!item.stock?'disabled':''}}"
+            data-id="{{item.id}}"
+            data-stock="{{item.stock}}"
+            catchtap="add"
+            aria-label="选择{{item.name}}规格"
+          >
+            <t-icon name="add" size="21" />
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="home-footer">
+    <view class="footer-line" />
+    <text>新鲜日常，就在身旁</text>
+    <view class="footer-line" />
+  </view>
+  <view class="demo-note">前端演示 · 商品与订单均为模拟数据</view>
+</view>
+<sku-picker id="sku-picker" product-id="{{picker}}" bindclose="close" bindadded="added" />

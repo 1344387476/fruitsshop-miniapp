@@ -1,0 +1,15 @@
+.address-title {
+  font-size: 29rpx;
+  margin-bottom: 9rpx;
+  word-break: break-all;
+}
+.fee-row {
+  margin-top: 24rpx;
+}
+.note-field {
+  padding: 0;
+  border: 0;
+}
+.switcher t-icon {
+  vertical-align: middle;
+}

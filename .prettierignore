@@ -1,0 +1,4 @@
+**/*.wxml
+miniprogram/miniprogram_npm/**
+artifacts/**
+node_modules/**

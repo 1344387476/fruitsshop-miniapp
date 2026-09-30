@@ -1,0 +1,21 @@
+<nav title="演示工具" />
+<view class="page">
+  <view class="card">
+    <view class="section-title">模拟店家完成订单</view>
+    <view class="muted">
+      此页面仅用于验收前端流程。正式接入后台后，应由店家后台更新订单状态，并移除此入口。
+    </view>
+  </view>
+  <view wx:if="{{!items.length}}" class="empty">暂无待履约的演示订单</view>
+  <view wx:for="{{items}}" wx:key="id" class="card">
+    <view class="row">
+      <text>{{item.lines[0].name}}</text>
+      <text class="status">{{item.statusText}}</text>
+    </view>
+    <view class="muted small section">{{item.id}}</view>
+    <button class="secondary section" data-id="{{item.id}}" bindtap="complete" disabled="{{busy}}">
+      {{item.fulfillment==='delivery'?'模拟配送完成':'模拟顾客已取货'}}
+    </button>
+  </view>
+  <button class="text-btn reset" bindtap="reset">重置全部本地演示数据</button>
+</view>

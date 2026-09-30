@@ -1,0 +1,47 @@
+.order-status {
+  display: flex;
+  gap: 24rpx;
+  align-items: center;
+  margin: 25rpx 0 45rpx;
+}
+.status-symbol {
+  color: #8b9573;
+}
+.order-status .title {
+  font-size: 38rpx;
+}
+.order-status .muted {
+  font-size: 22rpx;
+  margin-top: 10rpx;
+}
+.no-margin {
+  margin: 0;
+  font-size: 28rpx;
+}
+.contact-address {
+  margin-top: 24rpx;
+  word-break: break-all;
+}
+.contact-name {
+  margin-top: 10rpx;
+}
+.amount {
+  margin: 18rpx 0;
+  font-size: 26rpx;
+}
+.order-id {
+  font-size: 25rpx;
+  margin-top: 8rpx;
+  word-break: break-all;
+}
+.note {
+  word-break: break-all;
+}
+.bottom-bar .primary,
+.bottom-bar .secondary {
+  width: 0;
+  min-width: 0;
+  flex: 1 1 0;
+  padding: 0 15rpx;
+  font-size: 25rpx;
+}

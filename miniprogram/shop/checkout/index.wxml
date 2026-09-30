@@ -1,0 +1,117 @@
+<nav title="确认订单" />
+<view class="page with-bottom">
+  <view class="switcher">
+    <view class="{{mode==='delivery'?'active':''}}" data-mode="delivery" bindtap="mode">
+      <t-icon name="vehicle" size="20" />
+      配送到家
+    </view>
+    <view class="{{mode==='pickup'?'active':''}}" data-mode="pickup" bindtap="mode">
+      <t-icon name="shop" size="20" />
+      到店自提
+    </view>
+  </view>
+  <view class="card" wx:if="{{mode==='delivery'}}" bindtap="address">
+    <view class="row">
+      <view class="column" wx:if="{{address}}">
+        <view class="section-title address-title">{{address.detail}}</view>
+        <text class="muted">{{address.name}}　{{address.phone}}</text>
+      </view>
+      <view wx:else class="left">
+        <t-icon name="location" size="25" />
+        <text>添加收货地址</text>
+      </view>
+      <t-icon name="chevron-right" size="22" />
+    </view>
+    <view class="notice">{{shop.deliveryNote}}</view>
+  </view>
+  <view class="card" wx:else>
+    <view class="row">
+      <text class="section-title address-title">{{shop.name}}</text>
+      <text class="tag">自提免费</text>
+    </view>
+    <view class="muted">{{shop.address}} · {{shop.hours}}</view>
+    <view class="field">
+      <label>联系人</label>
+      <input
+        value="{{name}}"
+        data-field="name"
+        bindinput="input"
+        maxlength="20"
+        placeholder="怎么称呼您"
+        adjust-position
+      />
+    </view>
+    <view class="field">
+      <label>手机号码</label>
+      <input
+        value="{{phone}}"
+        data-field="phone"
+        bindinput="input"
+        type="number"
+        maxlength="11"
+        placeholder="便于门店联系您"
+        adjust-position
+      />
+    </view>
+  </view>
+  <view wx:if="{{loading}}" class="empty">正在确认这份新鲜…</view>
+  <view wx:elif="{{error}}" class="empty">
+    {{error}}
+    <button class="secondary section" bindtap="recalculate">重新检查</button>
+  </view>
+  <block wx:else>
+    <view class="card">
+      <view class="section-title">选购商品</view>
+      <view class="line" wx:for="{{viewLines}}" wx:key="skuId">
+        <view class="thumb"><fruit-image index="{{item.image}}" label="{{item.name}}" /></view>
+        <view class="column">
+          <view class="line-name">{{item.name}}</view>
+          <view class="muted small">{{item.spec}}</view>
+          <view class="row">
+            <text>¥{{item.priceText}}</text>
+            <text class="muted">×{{item.quantity}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="card">
+      <view class="row">
+        <text>商品金额</text>
+        <text>¥{{subtotal}}</text>
+      </view>
+      <view class="row fee-row">
+        <text>{{mode==='delivery'?'配送费':'自提费用'}}</text>
+        <text>{{mode==='delivery'?'¥'+fee:'免费'}}</text>
+      </view>
+      <view class="divider" />
+      <view class="row">
+        <text>实付金额</text>
+        <text class="price"><text class="currency">¥</text>{{total}}</text>
+      </view>
+    </view>
+    <view class="card">
+      <view class="field note-field">
+        <label>订单备注 · 选填</label>
+        <textarea
+          value="{{note}}"
+          data-field="note"
+          bindinput="input"
+          maxlength="200"
+          placeholder="有需要告诉店家的事，可以写在这里"
+          adjust-position
+          cursor-spacing="100"
+        />
+      </view>
+    </view>
+    <view class="notice">当前为演示环境，提交后进入模拟支付，不会产生真实扣款。</view>
+  </block>
+</view>
+<view class="bottom-bar row">
+  <view class="column">
+    <text class="small">合计</text>
+    <text class="price"><text class="currency">¥</text>{{total}}</text>
+  </view>
+  <button class="primary" bindtap="submit" loading="{{busy}}" disabled="{{busy||loading||error}}">
+    提交订单
+  </button>
+</view>

@@ -1,0 +1,70 @@
+<nav title="我的订单" />
+<scroll-view scroll-x class="order-tabs">
+  <view class="filter-row">
+    <view
+      wx:for="{{tabs}}"
+      wx:key="id"
+      class="{{filter===item.id?'active':''}}"
+      data-id="{{item.id}}"
+      bindtap="filter"
+    >
+      {{item.name}}
+    </view>
+  </view>
+</scroll-view>
+<view class="page">
+  <view wx:if="{{loading}}" class="empty">加载中…</view>
+  <view wx:elif="{{error}}" class="empty">
+    订单加载失败
+    <button class="secondary" bindtap="load">重试</button>
+  </view>
+  <view wx:elif="{{!items.length}}" class="empty">
+    <view class="empty-icon"><t-icon name="file" size="44" /></view>
+    <view>还没有相关订单</view>
+    <view class="muted">买点新鲜，为日常加点甜</view>
+    <button class="primary" bindtap="home">去选水果</button>
+  </view>
+  <block wx:else>
+    <view
+      wx:for="{{items}}"
+      wx:key="id"
+      class="card"
+      data-id="{{item.id}}"
+      bindtap="detail"
+    >
+      <view class="row">
+        <text class="tag"
+          >{{item.fulfillment==='delivery'?'配送到家':'到店自提'}}</text
+        >
+        <text class="status">{{item.statusText}}</text>
+      </view>
+      <view class="line">
+        <view class="thumb">
+          <fruit-image
+            index="{{item.lines[0].image}}"
+            label="{{item.lines[0].name}}"
+          />
+        </view>
+        <view class="column">
+          <view class="line-name">
+            {{item.lines[0].name}}
+            <text wx:if="{{item.lines.length > 1}}">等{{item.lines.length}}款商品</text>
+          </view>
+          <view class="muted small">{{item.dateText}}</view>
+          <view class="muted small">订单尾号 {{item.id}}</view>
+        </view>
+      </view>
+      <view class="row">
+        <text class="muted">{{item.status==='pending'?'应付':'订单金额'}} <text class="order-total">¥{{item.totalText}}</text></text>
+        <button
+          size="mini"
+          class="secondary small-btn"
+          data-id="{{item.id}}"
+          catchtap="detail"
+        >
+          {{item.status==='pending'?'去支付':'查看详情'}}
+        </button>
+      </view>
+    </view>
+  </block>
+</view>

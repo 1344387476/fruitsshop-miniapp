@@ -1,0 +1,77 @@
+.detail-image {
+  width: 100%;
+  height: 670rpx;
+}
+.detail-title {
+  margin: 26rpx 0 13rpx;
+}
+.detail-price {
+  font-size: 48rpx;
+}
+.spec-row {
+  padding: 8rpx 0;
+}
+.description {
+  color: #858378;
+  line-height: 1.9;
+  font-size: 27rpx;
+}
+.storage {
+  display: flex;
+  gap: 18rpx;
+  background: #eeefe7;
+  padding: 24rpx;
+  border-radius: 16rpx;
+  margin: 30rpx 0;
+  color: #717c59;
+}
+.storage .muted {
+  margin-top: 7rpx;
+  line-height: 1.7;
+}
+.detail-tools .icon-action {
+  flex: 0 0 72rpx;
+  width: 72rpx;
+  min-width: 72rpx;
+  max-width: 72rpx;
+  height: 88rpx;
+  line-height: 1.3;
+  padding: 0;
+  margin: 0;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rpx;
+  font-size: 20rpx;
+  color: #85877c;
+}
+.detail-bar {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+}
+.detail-tools {
+  display: flex;
+  flex: 0 0 144rpx;
+}
+.detail-purchases {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  gap: 12rpx;
+}
+.detail-purchases .purchase-action {
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 25rpx;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+}

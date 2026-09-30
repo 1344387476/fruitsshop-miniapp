@@ -1,0 +1,57 @@
+<nav title="鲜果详情" />
+<view wx:if="{{error}}" class="empty">这份水果暂时找不到了</view>
+<block wx:elif="{{item}}">
+  <view class="detail-image"><fruit-image index="{{item.image}}" label="{{item.name}}" /></view>
+  <view class="page with-bottom">
+    <view class="row">
+      <text class="tag">门店鲜选 · {{item.origin}}</text>
+      <text class="eyebrow">FRESH PICK</text>
+    </view>
+    <view class="title detail-title">{{item.name}}</view>
+    <view class="muted">{{item.subtitle}}</view>
+    <view class="row section">
+      <view class="price detail-price">
+        <text class="currency">¥</text>
+        {{item.skus[0].priceText}}
+        <text class="muted">起</text>
+      </view>
+      <text class="muted">{{item.skus[0].label}}</text>
+    </view>
+    <view class="divider" />
+    <view class="row spec-row" bindtap="open">
+      <text>选择规格</text>
+      <view class="left">
+        <text class="muted">{{item.skus.length}} 种规格可选</text>
+        <t-icon name="chevron-right" size="19" />
+      </view>
+    </view>
+    <view class="divider" />
+    <view class="section-title">关于这份新鲜</view>
+    <view class="description">{{item.description}}</view>
+    <view class="storage">
+      <t-icon name="info-circle" size="20" />
+      <view>
+        <view>储存小贴士</view>
+        <view class="muted">{{item.storage}}</view>
+      </view>
+    </view>
+    <view class="notice">商品图片与产地为演示内容，正式营业前请由门店核实。</view>
+  </view>
+  <view class="bottom-bar detail-bar">
+    <view class="detail-tools">
+      <button size="mini" class="icon-action" bindtap="contact">
+        <t-icon name="service" size="23" />
+        <text>店家</text>
+      </button>
+      <button size="mini" class="icon-action" bindtap="cart">
+        <t-icon name="cart" size="23" />
+        <text>购物车</text>
+      </button>
+    </view>
+    <view class="detail-purchases">
+      <button size="mini" class="secondary purchase-action" bindtap="open">加入购物车</button>
+      <button size="mini" class="primary purchase-action" data-buy="{{true}}" bindtap="open">立即购买</button>
+    </view>
+  </view>
+  <sku-picker id="sku-picker" product-id="{{picker}}" buy="{{buy}}" bindclose="close" />
+</block>

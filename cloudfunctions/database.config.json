@@ -1,0 +1,12 @@
+{
+  "description": "Manual setup specification; not an automatic deployment manifest. Apply deny rules to every listed collection.",
+  "clientRules": { "read": false, "write": false },
+  "collections": ["categories", "products", "skus", "settings", "carts", "addresses", "orders", "order_requests"],
+  "indexes": [
+    { "collection": "categories", "fields": [["enabled", "asc"], ["sort", "asc"], ["_id", "asc"]] },
+    { "collection": "products", "fields": [["enabled", "asc"], ["_id", "asc"]] },
+    { "collection": "products", "fields": [["enabled", "asc"], ["categoryId", "asc"], ["_id", "asc"]] },
+    { "collection": "skus", "fields": [["productId", "asc"], ["enabled", "asc"], ["_id", "asc"]] },
+    { "collection": "orders", "fields": [["ownerId", "asc"], ["createdAt", "desc"], ["_id", "desc"]] }
+  ]
+}

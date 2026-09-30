@@ -1,0 +1,45 @@
+.nav {
+  background: #faf8f4;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+.nav-title {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.brand {
+  font-size: 36rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+}
+.back {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  width: 80rpx;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 12rpx;
+}
+.back::after {
+  border: 0;
+}

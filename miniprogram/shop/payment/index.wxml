@@ -1,0 +1,39 @@
+<nav title="订单支付" />
+<view class="page payment">
+  <view wx:if="{{error}}" class="empty">
+    订单加载失败
+    <button class="secondary" bindtap="load">重试</button>
+  </view>
+  <block wx:else>
+    <view class="result-icon {{state==='success'?'done':''}}">
+      <t-icon
+        name="{{state==='success'?'check':state==='fail'?'close':state==='closed'?'close':'wallet'}}"
+        size="48"
+      />
+    </view>
+    <view class="title">
+      {{state==='success'?'支付成功':state==='fail'?'支付未成功':state==='cancel'?'已取消本次支付':state==='closed'?'订单已取消':'确认这份新鲜'}}
+    </view>
+    <view class="muted result-caption">
+      {{state==='success'?'店家将尽快为您准备，请留意订单状态。':state==='closed'?'可以回到首页重新挑选水果。':'订单已为您保留，可以继续支付。'}}
+    </view>
+    <view class="payment-price">
+      <text>¥</text>
+      {{total}}
+    </view>
+    <view class="demo-banner">
+      <t-icon name="info-circle" size="17" />
+      模拟支付 · 不会产生真实扣款
+    </view>
+    <block wx:if="{{state==='ready'}}">
+      <button class="primary" bindtap="success" loading="{{busy}}" disabled="{{busy}}">模拟支付成功</button>
+      <view class="row simulation-actions">
+        <button class="text-btn" bindtap="fail" disabled="{{busy}}">模拟支付失败</button>
+        <button class="text-btn" bindtap="cancel" disabled="{{busy}}">暂不支付</button>
+      </view>
+    </block>
+    <button wx:elif="{{state==='fail'||state==='cancel'}}" class="primary" bindtap="retry">重新支付</button>
+    <button wx:if="{{state!=='ready'}}" class="secondary section" bindtap="order">查看订单</button>
+    <button class="text-btn home-link" bindtap="home">返回首页</button>
+  </block>
+</view>

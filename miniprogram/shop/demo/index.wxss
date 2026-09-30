@@ -1,0 +1,4 @@
+.reset {
+  margin: 50rpx auto;
+  color: #b37159;
+}

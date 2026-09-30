@@ -1,0 +1,1 @@
+{ "enablePullDownRefresh": true, "usingComponents": { "sku-picker": "/components/sku-picker/index" } }

@@ -1,0 +1,16 @@
+<view wx:if="{{!hidden}}" class="tabs">
+  <view
+    wx:for="{{tabs}}"
+    wx:key="path"
+    class="tab {{selected===index?'active':''}}"
+    data-index="{{index}}"
+    bindtap="switch"
+    hover-class="pressed"
+  >
+    <view class="icon">
+      <t-icon name="{{item.icon}}" size="24" />
+      <text wx:if="{{index===1 && count}}" class="badge">{{count>99?'99+':count}}</text>
+    </view>
+    <text>{{item.text}}</text>
+  </view>
+</view>

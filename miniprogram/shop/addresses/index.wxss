@@ -1,0 +1,33 @@
+.address-detail {
+  font-size: 30rpx;
+  font-weight: 500;
+  margin-bottom: 14rpx;
+  word-break: break-all;
+}
+.card .divider {
+  margin: 20rpx 0 8rpx;
+}
+.card > .row {
+  min-width: 0;
+  align-items: center;
+}
+.card > .row > .tag,
+.card > .row > .muted {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.card > .row > .left {
+  flex: 0 0 auto;
+  gap: 24rpx;
+}
+.card .text-btn {
+  display: flex;
+  flex: 0 0 auto;
+  width: 64rpx;
+  min-width: 64rpx;
+  max-width: 64rpx;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  font-size: 24rpx;
+}

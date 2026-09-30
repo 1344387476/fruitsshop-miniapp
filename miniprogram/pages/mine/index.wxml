@@ -1,0 +1,66 @@
+<nav title="我的" back="{{false}}" />
+<view class="page tab-page">
+  <view class="profile">
+    <view class="avatar"><t-icon name="user" size="36" /></view>
+    <view>
+      <view class="title greeting">欢迎来到百果集</view>
+      <view class="muted">一日一果，日常多一点新鲜。</view>
+    </view>
+  </view>
+  <view class="card order-card">
+    <view class="row">
+      <view class="section-title no-margin">我的订单</view>
+      <button size="mini" class="text-btn" bindtap="orders">
+        <text>全部订单</text>
+        <t-icon name="chevron-right" size="16" />
+      </button>
+    </view>
+    <view class="order-shortcuts">
+      <view data-filter="pending" bindtap="orders">
+        <t-icon name="wallet" size="27" />
+        <text>待支付</text>
+        <text wx:if="{{pending}}" class="number">{{pending}}</text>
+      </view>
+      <view data-filter="paid" bindtap="orders">
+        <t-icon name="undertake-delivery" size="27" />
+        <text>待配送 / 自提</text>
+        <text wx:if="{{paid}}" class="number">{{paid}}</text>
+      </view>
+      <view data-filter="completed" bindtap="orders">
+        <t-icon name="check-circle" size="27" />
+        <text>已完成</text>
+        <text wx:if="{{completed}}" class="number">{{completed}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="card menu">
+    <view class="menu-row" bindtap="addresses">
+      <view class="left">
+        <t-icon name="location" size="22" />
+        <text>收货地址</text>
+      </view>
+      <t-icon name="chevron-right" size="20" />
+    </view>
+    <view class="menu-row" bindtap="contact">
+      <view class="left">
+        <t-icon name="service" size="22" />
+        <text>联系店家</text>
+      </view>
+      <t-icon name="chevron-right" size="20" />
+    </view>
+  </view>
+  <view class="store-info">
+    <view class="eyebrow">YOUR NEIGHBORHOOD FRUIT SHOP</view>
+    <view class="store-name">{{shop.name}}</view>
+    <view class="muted">{{shop.description}}</view>
+    <view class="store-hours">
+      <t-icon name="time" size="15" />
+      营业时间 {{shop.hours}}
+    </view>
+    <view class="muted small">{{shop.address}}</view>
+  </view>
+  <button size="mini" class="text-btn demo-entry" bindtap="demo">
+    <text>演示工具</text>
+    <t-icon name="chevron-right" size="14" />
+  </button>
+</view>

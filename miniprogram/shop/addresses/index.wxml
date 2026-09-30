@@ -1,0 +1,41 @@
+<nav title="{{select?'选择收货地址':'收货地址'}}" />
+<view class="page with-bottom">
+  <view wx:if="{{loading}}" class="empty">加载中…</view>
+  <view wx:elif="{{error}}" class="empty">
+    地址加载失败
+    <button class="secondary" bindtap="load">重试</button>
+  </view>
+  <view wx:elif="{{!items.length}}" class="empty">
+    <view class="empty-icon"><t-icon name="location" size="44" /></view>
+    <view>新鲜送到哪里？</view>
+    <view class="muted">添加地址，让店家找到您</view>
+  </view>
+  <block wx:else>
+    <view
+      wx:for="{{items}}"
+      wx:key="id"
+      class="card"
+      data-id="{{item.id}}"
+      bindtap="choose"
+    >
+      <view class="address-detail">{{item.detail}}</view>
+      <view class="muted">{{item.name}}　{{item.phone}}</view>
+      <view class="divider" />
+      <view class="row">
+        <text class="tag" wx:if="{{item.isDefault}}">默认地址</text>
+        <text class="muted small" wx:else>{{select?'点击选择此地址':''}}</text>
+        <view class="left">
+          <button size="mini" class="text-btn" data-id="{{item.id}}" catchtap="edit">
+            编辑
+          </button>
+          <button size="mini" class="text-btn" data-id="{{item.id}}" catchtap="remove">
+            删除
+          </button>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+<view class="bottom-bar"
+  ><button class="primary" bindtap="add">＋ 新增收货地址</button></view
+>
